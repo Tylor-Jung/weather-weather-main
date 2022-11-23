@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class HourlyTemp extends StatelessWidget {
   const HourlyTemp(
@@ -32,7 +31,7 @@ class HourlyTemp extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             SizedBox(
-              child: SvgPicture.asset(
+              child: Image.asset(
                 weatherImage,
                 color: Colors.white,
               ),

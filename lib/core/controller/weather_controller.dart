@@ -7,7 +7,7 @@ import 'package:weather_weather_clone/services/location_service.dart';
 
 class WeatherController extends GetxController {
   // WeatherModel 객체생성
- final WeatherModel weatherModel = WeatherModel();
+  final WeatherModel weatherModel = WeatherModel();
 
   // ! 아래 프로퍼티들 모델로 정리해서 화면에 업데이트
 
@@ -27,22 +27,22 @@ class WeatherController extends GetxController {
     super.onInit();
   }
 
-  Future<dynamic> _fetchWeatherData(double latitude, double longitude) async {
-    final weatherApiRequestService = Get.find<WeatherApiRequestService>();
-    final json =
-        await weatherApiRequestService.fetchWeather(latitude, longitude);
-    if (json == null) {
-      //스넥바로 에러 메세지를 보여준다.
-      Get.snackbar(
-        'error message',
-        'error $json',
-        snackPosition: SnackPosition.BOTTOM,
-      );
-      return;
-    }
-    print("json: $json");
-    final weatherModel = WeatherModel.fromJson(json);
-  }
+  // Future<dynamic> _fetchWeatherData(double latitude, double longitude) async {
+  //   final weatherApiRequestService = Get.find<WeatherApiRequestService>();
+  //   final json =
+  //       await weatherApiRequestService.fetchWeather(latitude, longitude);
+  //   if (json == null) {
+  //     //스넥바로 에러 메세지를 보여준다.
+  //     Get.snackbar(
+  //       'error message',
+  //       'error $json',
+  //       snackPosition: SnackPosition.BOTTOM,
+  //     );
+  //     return;
+  //   }
+  //   print("json: $json");
+  //   final weatherModel = WeatherModel.fromJson(json);
+  // }
 
   void _askForLocationPermission() async {
     final locationService = Get.find<LocationService>();
@@ -60,8 +60,6 @@ class WeatherController extends GetxController {
     /// 받아온 coordinate으로 API 요청을 한다.
     final latitude = coordinate.latitude.toDouble();
     final longitude = coordinate.longitude.toDouble();
-
-    _fetchWeatherData(latitude, longitude);
   }
 
   void _getMyCoordinate() async {

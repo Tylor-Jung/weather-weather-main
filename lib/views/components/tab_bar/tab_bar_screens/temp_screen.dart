@@ -5,7 +5,7 @@ import 'package:weather_weather_clone/views/components/tab_bar/widget/hourly_tem
 
 class TempScreen extends StatelessWidget {
   TempScreen({super.key});
-final WeatherController weatherController = Get.put(WeatherController());
+  final WeatherController weatherController = Get.put(WeatherController());
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ final WeatherController weatherController = Get.put(WeatherController());
             24,
             (index) => HourlyTemp(
                 time: '${index + 1} 시',
-                weatherImage: 'assets/svg/climacon-sun.svg',
+                weatherImage: 'assets/weather/01d.png',
                 temp: '18℃'),
           )
         ],
