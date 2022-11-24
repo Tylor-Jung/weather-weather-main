@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:weather_weather_clone/core/controller/weather_controller.dart';
 import 'package:weather_weather_clone/views/components/tab_bar/widget/hourly_temp.dart';
 
 class TempScreen extends StatelessWidget {
-  TempScreen({super.key});
-  final WeatherController weatherController = Get.put(WeatherController());
+  const TempScreen({super.key});
+  // final WeatherController weatherController = Get.put(WeatherController());
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +15,7 @@ class TempScreen extends StatelessWidget {
           ...List.generate(
             24,
             (index) => HourlyTemp(
-                time: '${index + 1} 시',
+                time: '${index++} 시',
                 weatherImage: 'assets/weather/01d.png',
                 temp: '18℃'),
           )

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:geolocator/geolocator.dart';
 
 // ! MyLocation이 무엇인지? 데이터 모델인지? 아니면 어떤 기능 수행하는 서비스 형태의 클래스인지?
@@ -17,7 +17,7 @@ class MyLocation {
       myLongitude = myLocation.longitude;
     } catch (e) {
       // ! 아래의 텍스트가 보여지지 않는다. 만약 위치권한에 허용을 하지 않았을 경우에 날씨날씨에서 어떻게 하는지 연구 필요
-      const Text('인터넷 연결에 문제가 발생했습니다.');
+      Future.error('등록되어있는 지역이 없어요. \n 지역을 등록해주세요.');
     }
   }
 }

@@ -31,9 +31,10 @@ class HourlyTemp extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             SizedBox(
+              height: 70,
+              width: 70,
               child: Image.asset(
                 weatherImage,
-                color: Colors.white,
               ),
             ),
             const SizedBox(height: 10),

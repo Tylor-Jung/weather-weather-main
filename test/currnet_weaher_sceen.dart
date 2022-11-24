@@ -7,7 +7,7 @@ import 'package:weather_weather_clone/views/components/tab_bar/widget/tab_bar_vi
 class CurrentScreen extends StatelessWidget {
   CurrentScreen({super.key});
 
-  CurrentDataControlelr currentCntl = Get.put(CurrentDataControlelr());
+  CurrentDataController currentCntl = Get.put(CurrentDataController());
 
   @override
   Widget build(BuildContext context) {
@@ -47,10 +47,11 @@ class CurrentScreen extends StatelessWidget {
                                     style: const TextStyle(
                                         color: Colors.white, fontSize: 15),
                                   ), // 실시간 날씨
-                                  const SizedBox(
+                                  SizedBox(
                                       height: 100,
                                       width: 100,
-                                      child: Text('아이콘')), // 날씨상황을 나타내는 아이콘
+                                      child: Image.asset(
+                                          'assets/weather/${currentCntl.currentData?.icon}.png')), // 날씨상황을 나타내는 아이콘
                                   Text(
                                     '${currentCntl.currentData?.temp}℃',
                                     style: const TextStyle(

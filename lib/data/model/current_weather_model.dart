@@ -1,4 +1,4 @@
-class WeatherModel {
+class CurrentWeatherModel {
   // 도시이름
   String? cityName;
   // 요약
@@ -22,7 +22,7 @@ class WeatherModel {
   // 기후 아이콘
   String? icon;
 
-  WeatherModel({
+  CurrentWeatherModel({
     this.cityName,
     this.description,
     this.temp,
@@ -36,8 +36,8 @@ class WeatherModel {
     this.icon,
   });
 
-  factory WeatherModel.fromJson(Map<String, dynamic> json) {
-    return WeatherModel(
+  factory CurrentWeatherModel.fromJson(Map<String, dynamic> json) {
+    return CurrentWeatherModel(
       cityName: json['name'],
       description: json['weather'][0]['description'],
       temp: json['main']['temp'],
@@ -46,10 +46,23 @@ class WeatherModel {
       maxTemp: json['main']['temp_max'],
       humidity: json['main']['humidity'],
       wind: json['wind']['speed'],
-      // rain: json['rain']['onehour'],
-      id: json['weather'][0]['id'],
+      // rain: json['rain']['1h'],
+      id: json['weather'][0]['id'].toInt(),
+      icon: json['weather'][0]['icon'].toString(),
     );
   }
+
+  //  getWeatherIcon(int id) {
+  //   if (id < 300) {
+  //     return '1d';
+  //   } else if (id < 600) {
+  //     return '01d';
+  //   } else if (id == 800) {
+  //     return '01d';
+  //   } else if (id <= 804) {
+  //     return '01d';
+  //   }
+  // }
 
   // Map<String, dynamic> toJson() {
   //   return {
@@ -64,25 +77,6 @@ class WeatherModel {
   //     "rain": rain,
   //     "id": id,
   //   };
-  // }
-
-  // String? getWeatherIcon(int status) {
-  //   if (status < 300) {
-  //     return SvgPicture.asset(
-  //       'assets/svg/climacon-cloud_lightning.svg',
-  //       color: Colors.black87,
-  //     );
-  //   } else if (status < 600) {
-  //     return SvgPicture.asset('assets/svg/climacon-cloud_snow.svg',
-  //         color: Colors.black87);
-  //   } else if (status == 800) {
-  //     return SvgPicture.asset('assets/svg/climacon-sun.svg',
-  //         color: Colors.black87);
-  //   } else if (status <= 804) {
-  //     return SvgPicture.asset('assets/svg/climacon-cloud_sun.svg',
-  //         color: Colors.black87);
-  //   }
-  //   return null;
   // }
 
 }

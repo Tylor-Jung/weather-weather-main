@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:weather_weather_clone/core/controller/current_air_controller.dart';
 import 'package:weather_weather_clone/core/controller/current_data_controller.dart';
 import 'package:weather_weather_clone/core/controller/tabbar_controller.dart';
-import 'package:weather_weather_clone/core/controller/weather_controller.dart';
 import 'package:weather_weather_clone/views/components/tab_bar/widget/tab_bar_components.dart';
 import 'package:weather_weather_clone/views/components/tab_bar/widget/tab_bar_view_components.dart';
 
 class HomeScreen extends StatelessWidget {
   TabbarController homeController = Get.put(TabbarController());
-  WeatherController weatherController = Get.put(WeatherController());
-  CurrentDataControlelr currentCntl = Get.put(CurrentDataControlelr());
+  CurrentDataController currentCntl = Get.put(CurrentDataController());
+  CurrentAirController airCntl = Get.put(CurrentAirController());
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,9 @@ class HomeScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         Container(
-                            decoration: const BoxDecoration(color: Colors.blue),
+                            height: 400,
+                            decoration:
+                                const BoxDecoration(color: Colors.transparent),
                             child: Padding(
                               padding: const EdgeInsets.symmetric(vertical: 10),
                               child: Column(
@@ -65,12 +67,18 @@ class HomeScreen extends StatelessWidget {
                                   Text(
                                     '${currentCntl.currentData?.description}',
                                     style: const TextStyle(
-                                        color: Colors.white, fontSize: 15),
+                                        color: Colors.white, fontSize: 20),
                                   ), // 실시간 날씨
-                                  const SizedBox(
-                                      height: 100,
-                                      width: 100,
-                                      child: Text('아이콘')), // 날씨상황을 나타내는 아이콘
+
+                                  // ! 날씨상황을 나타내는 아이콘 => null 로 리턴됨 ㅡㅡ
+
+                                  Image.asset(
+                                    height: 100,
+                                    width: 100,
+                                    'assets/weather/10d.png',
+                                    // 'assets/weather/${currentCntl.currentData?.icon}.png',
+                                  ),
+
                                   Text(
                                     '${currentCntl.currentData?.temp}℃',
                                     style: const TextStyle(
@@ -79,7 +87,7 @@ class HomeScreen extends StatelessWidget {
                                   const Text(
                                     '어제보다 x℃ 가 높아요',
                                     style: TextStyle(
-                                        color: Colors.black, fontSize: 15),
+                                        color: Colors.white, fontSize: 15),
                                   ), // 어제와 비교, 높아요/낮아요
                                   Text(
                                     '최고 ${currentCntl.currentData?.minTemp}℃ / 최저 ${currentCntl.currentData?.maxTemp}℃',
@@ -113,7 +121,18 @@ class HomeScreen extends StatelessWidget {
                                         ),
                                       ),
                                       const SizedBox(
-                                          width: 5), // 미세먼지에 따른 이미지 파일 집어넣기
+                                          width: 10), // 미세먼지에 따른 이미지 파일 집어넣기
+                                      Text(
+                                        '${airCntl.airModel?.dust}',
+                                        style: const TextStyle(
+                                            color: Colors.white, fontSize: 25),
+                                      ),
+                                      const Text(
+                                        ' ㎍/㎥',
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 10),
+                                      ),
+                                      const SizedBox(width: 10),
                                       Column(
                                         children: const [
                                           Text(
@@ -130,7 +149,7 @@ class HomeScreen extends StatelessWidget {
                                             ),
                                           ), // 미세먼지 데이터 특정 값 range 안에서 특정 메시지 출력
                                         ],
-                                      )
+                                      ),
                                     ],
                                   ),
                                 ),

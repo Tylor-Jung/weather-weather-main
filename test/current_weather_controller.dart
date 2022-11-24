@@ -11,41 +11,36 @@ class CurrentDataController extends GetxController {
   final _baseUrl = 'https://api.openweathermap.org/data/2.5/';
 
   var isLoading = false.obs;
-  int? id = 0;
-  String? icon = '';
   CurrentWeatherModel? currentData;
 
   @override
   void onInit() {
-    _getMyCurrentLocation();
     super.onInit();
+    _getMyCurrentLocation();
   }
 
   void _fetchData(double latitude, double longitude) async {
-    final endPoint =
+    final endpoint =
         "weather?lat=$latitude&lon=$longitude&appid=$_apiKey&units=metric";
     try {
-      http.Response response = await http.get(Uri.parse(_baseUrl + endPoint));
+      http.Response response = await http.get(Uri.parse(_baseUrl + endpoint));
       if (response.statusCode == 200) {
         var result = jsonDecode(response.body);
         currentData = CurrentWeatherModel.fromJson(result);
-
-        print('아 왜 안돼는거냐고 ㅡㅡ: $result');
+        print(result);
       } else {
         print('error fetched data');
       }
     } catch (e) {
       print(e);
-      Get.snackbar('error message', '날씨 데이터를 불러올 수 없어요');
     }
-    _CurrentWehaterIcon();
   }
 
   void _getMyCurrentLocation() async {
     final locationService = Get.find<LocationService>();
     final coordinate = await locationService.getMyCurrentLocation();
     if (coordinate == null) {
-      Get.snackbar('error message', '위치 접근에 실패했습니다.');
+      /// 위치권한을 주지 않을 경우 이벤트 핸들링이 필요하다.
       return;
     }
 
@@ -56,22 +51,34 @@ class CurrentDataController extends GetxController {
     return _fetchData(latitude, longitude);
   }
 
-  _CurrentWehaterIcon() {
-    var id = currentData?.id;
-    print('id값 :$id');
+  currentWeatherIcon() {
+    var id = CurrentWeatherModel().id;
     if (id! < 300) {
-      return '1d';
-    } else if (id < 600) {
-      return '01d';
+      return 'assets/weather/11d.png';
+    } else if (id < 500) {
+      return 'assets/weather/09d.png';
+    } else if (id <= 504) {
+      return 'assets/weather/10d.png';
+    } else if (id == 511) {
+      return 'assets/weather/13d.png';
+    } else if (id <= 531) {
+      return 'assets/weather/09d.png';
+    } else if (id < 700) {
+      return 'assets/weather/13d.png';
     } else if (id == 800) {
-      return '01d';
-    } else if (id <= 804) {
-      return '01d';
+      return 'assets/weather/01d.png';
+    } else if (id == 801) {
+      return 'assets/weather/02d.png';
+    } else if (id == 803) {
+      return 'assets/weather/04d.png';
+    } else if (id == 804) {
+      return 'assets/weather/04d.png';
     }
-    if (id == null) {
+    final icon = id;
+    if (icon == null) {
       Get.snackbar(
         'error message',
-        'error $id',
+        'error $icon',
         snackPosition: SnackPosition.BOTTOM,
       );
       return;

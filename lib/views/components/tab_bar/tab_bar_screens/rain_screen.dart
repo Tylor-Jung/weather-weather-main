@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:weather_weather_clone/core/controller/weather_controller.dart';
 
 class RainScreen extends StatelessWidget {
-  RainScreen({super.key});
-  final WeatherController weatherController = Get.put(WeatherController());
+  const RainScreen({super.key});
+  // final LocationController weatherController = Get.put(LocationController());
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Text(
-        '${weatherController}',
-        style: const TextStyle(color: Colors.white, fontSize: 20),
+        '강수',
+        style: TextStyle(color: Colors.white, fontSize: 20),
       ),
     );
   }

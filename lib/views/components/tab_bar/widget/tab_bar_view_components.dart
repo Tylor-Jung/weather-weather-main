@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:weather_weather_clone/core/controller/tabbar_controller.dart';
+import 'package:weather_weather_clone/views/components/tab_bar/tab_bar_screens/feels_like_temp_screen.dart';
 import 'package:weather_weather_clone/views/components/tab_bar/tab_bar_screens/humidity_screen.dart';
 import 'package:weather_weather_clone/views/components/tab_bar/tab_bar_screens/rain_screen.dart';
-import 'package:weather_weather_clone/views/components/tab_bar/tab_bar_screens/feels_like_temp_screen.dart';
 import 'package:weather_weather_clone/views/components/tab_bar/tab_bar_screens/temp_screen.dart';
 import 'package:weather_weather_clone/views/components/tab_bar/tab_bar_screens/wind_Screen.dart';
 
