@@ -115,7 +115,8 @@ class HomeScreen extends StatelessWidget {
                                     children: [
                                       SizedBox(
                                         child: Image.asset(
-                                          'assets/dust/bad.png',
+                                          'assets/dust/good.png',
+                                          // 'assets/dust/${airCntl.airModel?.dustIcon}.png',
                                           width: 38,
                                           height: 38,
                                         ),

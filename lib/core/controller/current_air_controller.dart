@@ -27,7 +27,7 @@ class CurrentAirController extends GetxController {
         var result = jsonDecode(response.body);
         airModel = CurrentAirDataModel.fromJson(result);
 
-        print('미세미세 다타 : $result');
+        print('미세미세 데이터 : $result');
       } else {
         print('erroer fetch air data');
       }
@@ -49,5 +49,14 @@ class CurrentAirController extends GetxController {
     final longitude = coordinate.longitude.toDouble();
 
     return _fetchAirData(latitude, longitude);
+  }
+
+  _getAirIcon(int aqi) {
+    // final airModel = Get.find<CurrentAirDataModel>();
+    final airIcon = CurrentAirDataModel().getAirIcon(aqi);
+    if (airIcon == null) {
+      Get.snackbar('error message', '아이콘 데이터를 불러올 수 없어요');
+      return null;
+    }
   }
 }
