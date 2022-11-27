@@ -21,7 +21,7 @@ class WeatherApiRequestService extends GetxService {
   //   // ! 200이 아닐 경우?
   // }
 
-  Future<Map<String, dynamic>> fetchWeather(
+  Future<Map<String, dynamic>?> fetchWeather(
       double latitude, double longitude) async {
     final enpoint =
         "weather?lat=$latitude&lon=$longitude&appid=$_apiKey&units=metric";
@@ -29,23 +29,23 @@ class WeatherApiRequestService extends GetxService {
     final uri = Uri.parse(_baseUrl + enpoint);
     final response = await http.get(uri);
     if (response.statusCode != 200) {
-      /// 재대로 데이터가 오지 않을 경우 핸들링
-      return Future.error('$response');
+      return null;
     }
     //200일 경우
     var json = jsonDecode(response.body);
     return json;
   }
 
-  Future<Map<String, dynamic>> fetchAirData(
+  Future<Map<String, dynamic>?> fetchAirData(
       double latitude, double longitude) async {
     final enpoint = "air_pollution?lat=$latitude&lon=$longitude&appid=$_apiKey";
 
     final uri = Uri.parse(_baseUrl + enpoint);
     final response = await http.get(uri);
+
     if (response.statusCode != 200) {
       /// 재대로 데이터가 오지 않을 경우 핸들링
-      return Future.error('$response');
+      return null;
     }
     //200일 경우
     var airJson = jsonDecode(response.body);

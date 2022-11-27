@@ -37,19 +37,24 @@ class CurrentWeatherModel {
   });
 
   factory CurrentWeatherModel.fromJson(Map<String, dynamic> json) {
-    return CurrentWeatherModel(
-      cityName: json['name'],
-      description: json['weather'][0]['description'],
-      temp: json['main']['temp'],
-      feelsLike: json['main']['feelsLike'],
-      minTemp: json['main']['temp_min'],
-      maxTemp: json['main']['temp_max'],
-      humidity: json['main']['humidity'],
-      wind: json['wind']['speed'],
-      // rain: json['rain']['1h'],
-      id: json['weather'][0]['id'].toInt(),
-      icon: json['weather'][0]['icon'].toString(),
-    );
+    try {
+      return CurrentWeatherModel(
+        cityName: json['name'],
+        description: json['weather'][0]['description'],
+        temp: json['main']['temp'],
+        feelsLike: json['main']['feelsLike'],
+        minTemp: json['main']['temp_min'],
+        maxTemp: json['main']['temp_max'],
+        humidity: json['main']['humidity'],
+        wind: json['wind']['speed'],
+        // rain: json['rain']['1h'],
+        id: json['weather'][0]['id'].toInt(),
+        icon: json['weather'][0]['icon'].toString(),
+      );
+    } catch (error) {
+      print(error);
+      throw Exception(error);
+    }
   }
 
   //  getWeatherIcon(int id) {

@@ -19,8 +19,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
-    Get.put(LocationService());
-    Get.put(WeatherApiRequestService());
+    Get.put(LocationService(), permanent: true);
+    Get.put(WeatherApiRequestService(), permanent: true);
     super.initState();
   }
 

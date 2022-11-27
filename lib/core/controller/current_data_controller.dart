@@ -5,10 +5,14 @@ import 'package:http/http.dart' as http;
 import 'package:weather_weather_clone/data/model/current_weather_model.dart';
 import 'package:weather_weather_clone/services/location_service.dart';
 
+import '../../data/network/weather_api_request_service.dart';
+
 const _apiKey = 'e0eec712a45b2a728c6ec140281f353f';
 
 class CurrentDataController extends GetxController {
   final _baseUrl = 'https://api.openweathermap.org/data/2.5/';
+
+  // final weatherApiRequestService = Get.find<WeatherApiRequestService>();
 
   var isLoading = false.obs;
   int? id = 0;
@@ -22,6 +26,9 @@ class CurrentDataController extends GetxController {
   }
 
   void _fetchData(double latitude, double longitude) async {
+    // final body =
+    //     await weatherApiRequestService.fetchAirData(latitude, longitude);
+
     final endPoint =
         "weather?lat=$latitude&lon=$longitude&appid=$_apiKey&units=metric";
     try {

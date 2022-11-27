@@ -9,7 +9,7 @@ import 'package:weather_weather_clone/views/components/tab_bar/tab_bar_screens/w
 
 class TabBarViewWidget extends StatelessWidget {
   TabBarViewWidget({super.key});
-  final TabbarController tapCtrl = Get.put(TabbarController());
+  final tapCtrl = Get.find<TabbarController>();
 
   @override
   Widget build(BuildContext context) {
