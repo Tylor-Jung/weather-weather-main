@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:weather_weather_clone/core/controller/home_controller.dart';
+import 'package:weather_weather_clone/views/components/tab_bar/widget/hourly_temp_widget.dart';
 
 class HomePage extends GetView<HomeController> {
   @override
@@ -64,7 +65,7 @@ class HomePage extends GetView<HomeController> {
                             // Image.asset(
                             //   height: 100,
                             //   width: 100,
-                            //   'assets/weather/${controller.currentData.value?.icon}.png',
+                            //   'assets/weather/${controller.currentData.value?.id}.png',
                             // ),
 
                             Text(
@@ -144,6 +145,13 @@ class HomePage extends GetView<HomeController> {
                         )
                       ],
                     ),
+                  ),
+                ),
+                Container(
+                  child: HourlyTempWidget(
+                    temp: '1111',
+                    time: '1111',
+                    weatherImage: '1111',
                   ),
                 ),
                 // Container(

@@ -1,6 +1,6 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-import 'package:weather_weather_clone/views/location_permission_screen.dart';
+import 'package:weather_weather_clone/views/location_permission_page.dart';
 
 /// 위치 권한에 대한 작업을 하는 서비스
 class LocationService extends GetxService {
@@ -42,7 +42,7 @@ class LocationService extends GetxService {
         status == LocationPermission.unableToDetermine ||
         status == LocationPermission.deniedForever) {
       onTaskComplete(null);
-      return Get.to(() => const LocationPermissionScreen());
+      return Get.to(() => const LocationPermissionPage());
     }
 
     Position myLocation = await Geolocator.getCurrentPosition(

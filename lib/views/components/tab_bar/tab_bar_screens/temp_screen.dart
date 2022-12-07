@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weather_weather_clone/views/components/tab_bar/widget/hourly_temp.dart';
+import 'package:weather_weather_clone/views/components/tab_bar/widget/hourly_temp_widget.dart';
 
 class TempScreen extends StatelessWidget {
   const TempScreen({super.key});
@@ -14,7 +14,7 @@ class TempScreen extends StatelessWidget {
         children: [
           ...List.generate(
             24,
-            (index) => HourlyTemp(
+            (index) => HourlyTempWidget(
                 time: '${index++} 시',
                 weatherImage: 'assets/weather/01d.png',
                 temp: '18℃'),

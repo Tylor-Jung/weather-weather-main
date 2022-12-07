@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:weather_weather_clone/data/model/hourly_weather_model.dart';
 import '../../data/model/current_air_data_model.dart';
 import '../../data/model/current_weather_model.dart';
 import '../../data/network/weather_api_request_service.dart';
@@ -9,12 +10,9 @@ class HomeController extends GetxController {
 
   var isLoading = false.obs;
 
-  int? id = 0;
-  int? aqi = 0;
-  String? icon = '';
-  String? dustIcon = '';
   Rxn<CurrentWeatherModel> currentData = Rxn();
   Rxn<CurrentAirDataModel> airModel = Rxn();
+  Rxn<HourlyWeatherModel> hourlyModel = Rxn();
 
   @override
   void onReady() {
@@ -28,6 +26,7 @@ extension HomeControllerFunction on HomeController {
     try {
       final body =
           await weatherApiRequestService.fetchWeather(latitude, longitude);
+      print('fetchWeatherData: $body');
       if (body == null) {
         //200이 아닐경우
         Get.snackbar('api invalid reponse error', '...');
@@ -56,6 +55,21 @@ extension HomeControllerFunction on HomeController {
     }
   }
 
+  void _fetchHourlyWeatherData(double latitude, double longitude) async {
+    try {
+      final body = await weatherApiRequestService.fetchHourlyWeatherData(
+          latitude, longitude);
+      print('fetchHourlyWeatherData : $body');
+      if (body == null) {
+        Get.snackbar('api invalid response error', '시간별 날씨 데이터를 불러올 수 없습니다.');
+        return;
+      }
+      hourlyModel.value = HourlyWeatherModel.fromJson(body);
+    } catch (e) {
+      Get.snackbar('api invalid response error', '시간별 날씨 데이터를 불러올 수 없습니다.');
+    }
+  }
+
   void _getMyCurrentLocation() async {
     final locationService = Get.find<LocationService>();
     final coordinate = await locationService.getMyCurrentLocation();
@@ -70,5 +84,6 @@ extension HomeControllerFunction on HomeController {
 
     _fetchData(latitude, longitude);
     _fetchAirData(latitude, longitude);
+    _fetchHourlyWeatherData(latitude, longitude);
   }
 }

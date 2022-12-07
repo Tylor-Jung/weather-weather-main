@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class HourlyTemp extends StatelessWidget {
-  const HourlyTemp(
+class HourlyTempWidget extends StatelessWidget {
+  const HourlyTempWidget(
       {super.key,
       required this.time,
       required this.weatherImage,
@@ -30,13 +30,13 @@ class HourlyTemp extends StatelessWidget {
                   color: Colors.white),
             ),
             const SizedBox(height: 10),
-            SizedBox(
-              height: 70,
-              width: 70,
-              child: Image.asset(
-                weatherImage,
-              ),
-            ),
+            // SizedBox(
+            //   height: 70,
+            //   width: 70,
+            //   child: Image.asset(
+            //     weatherImage,
+            //   ),
+            // ),
             const SizedBox(height: 10),
             Text(
               temp,

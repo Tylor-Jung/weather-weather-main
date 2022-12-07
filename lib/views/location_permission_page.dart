@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class LocationPermissionScreen extends StatelessWidget {
-  const LocationPermissionScreen({super.key});
+class LocationPermissionPage extends StatelessWidget {
+  const LocationPermissionPage({super.key});
 
   @override
   Widget build(BuildContext context) {
