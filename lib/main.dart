@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:weather_weather_clone/core/bindings/init_bindings.dart';
 import 'package:weather_weather_clone/data/network/weather_api_request_service.dart';
 import 'package:weather_weather_clone/services/location_service.dart';
-import 'package:weather_weather_clone/views/home_screen.dart';
+import 'package:weather_weather_clone/views/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,7 +32,7 @@ class _MyAppState extends State<MyApp> {
           primarySwatch: Colors.blue,
         ),
         initialBinding: InitBindings(),
-        home: HomeScreen());
+        home: HomePage());
   }
 }
 

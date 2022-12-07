@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:weather_weather_clone/core/controller/current_data_controller.dart';
+import 'current_data_controller.dart';
 import 'package:weather_weather_clone/views/components/tab_bar/widget/tab_bar_components.dart';
 import 'package:weather_weather_clone/views/components/tab_bar/widget/tab_bar_view_components.dart';
 

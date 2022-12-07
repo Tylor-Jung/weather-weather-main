@@ -1,6 +1,5 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:weather_weather_clone/views/location_permission_screen.dart';
 
 /// 위치 권한에 대한 작업을 하는 서비스

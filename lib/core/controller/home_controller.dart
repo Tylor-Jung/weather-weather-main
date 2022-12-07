@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import '../../data/model/current_air_data_model.dart';
 import '../../data/model/current_weather_model.dart';
 import '../../data/network/weather_api_request_service.dart';
 import '../../services/location_service.dart';
@@ -9,8 +10,11 @@ class HomeController extends GetxController {
   var isLoading = false.obs;
 
   int? id = 0;
+  int? aqi = 0;
   String? icon = '';
+  String? dustIcon = '';
   Rxn<CurrentWeatherModel> currentData = Rxn();
+  Rxn<CurrentAirDataModel> airModel = Rxn();
 
   @override
   void onReady() {
@@ -36,6 +40,22 @@ extension HomeControllerFunction on HomeController {
     }
   }
 
+  void _fetchAirData(double latitude, double longitude) async {
+    try {
+      final body =
+          await weatherApiRequestService.fetchAirData(latitude, longitude);
+      print('fetchAirData: ${body}');
+      if (body == null) {
+        Get.snackbar('api invalid reponse error', '...');
+        return;
+      }
+
+      airModel.value = CurrentAirDataModel.fromJson(body);
+    } catch (e) {
+      Get.snackbar('error message', '미세먼지 데이터를 불러올 수 없어요');
+    }
+  }
+
   void _getMyCurrentLocation() async {
     final locationService = Get.find<LocationService>();
     final coordinate = await locationService.getMyCurrentLocation();
@@ -49,5 +69,6 @@ extension HomeControllerFunction on HomeController {
     final longitude = coordinate.longitude.toDouble();
 
     _fetchData(latitude, longitude);
+    _fetchAirData(latitude, longitude);
   }
 }

@@ -9,6 +9,7 @@ class WeatherApiRequestService extends GetxService {
   // ! 위도 경도를 받아서 URL 생성해서 받는게 좋음
 
   final _baseUrl = 'https://api.openweathermap.org/data/2.5/';
+  final _historyUrl = 'https://history.openweathermap.org/data/2.5';
   final _apiKey = 'e0eec712a45b2a728c6ec140281f353f';
 
   // Future<dynamic> getJsonData(String url) async {
@@ -41,6 +42,22 @@ class WeatherApiRequestService extends GetxService {
     final enpoint = "air_pollution?lat=$latitude&lon=$longitude&appid=$_apiKey";
 
     final uri = Uri.parse(_baseUrl + enpoint);
+    final response = await http.get(uri);
+
+    if (response.statusCode != 200) {
+      /// 재대로 데이터가 오지 않을 경우 핸들링
+      return null;
+    }
+    //200일 경우
+    var airJson = jsonDecode(response.body);
+    return airJson;
+  }
+
+  Future<Map<String, dynamic>?> historyData(
+      double latitude, double longitude) async {
+    final enpoint = "history/city?lat=$latitude&lon=$longitude&type=hour&start={start}&end={end}&appid={API key}";
+
+    final uri = Uri.parse(_historyUrl + enpoint);
     final response = await http.get(uri);
 
     if (response.statusCode != 200) {

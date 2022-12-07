@@ -57,17 +57,17 @@ class CurrentWeatherModel {
     }
   }
 
-  //  getWeatherIcon(int id) {
-  //   if (id < 300) {
-  //     return '1d';
-  //   } else if (id < 600) {
-  //     return '01d';
-  //   } else if (id == 800) {
-  //     return '01d';
-  //   } else if (id <= 804) {
-  //     return '01d';
-  //   }
-  // }
+   getWeatherIcon(int id) {
+    if (id < 300) {
+      return '1d';
+    } else if (id < 600) {
+      return '01d';
+    } else if (id == 800) {
+      return '01d';
+    } else if (id <= 804) {
+      return '01d';
+    }
+  }
 
   // Map<String, dynamic> toJson() {
   //   return {

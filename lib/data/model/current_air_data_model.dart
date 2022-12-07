@@ -16,15 +16,18 @@ class CurrentAirDataModel {
   // * PM2.5 = 초미세먼지
 
   factory CurrentAirDataModel.fromJson(Map<String, dynamic> json) {
-    return CurrentAirDataModel(
-      dust: json['list'][0]['components']['pm10'],
-      aqi: json['list'][0]['aqi'],
-    );
+    try {
+      return CurrentAirDataModel(
+        dust: json['list'][0]['components']['pm10'],
+        aqi: json['list'][0]['main']['aqi'].toInt(),
+      );
+    } catch (e) {
+      print(e);
+      throw Exception(e);
+    }
   }
 
   getAirIcon(int aqi) {
-    final aqi = CurrentAirDataModel().aqi;
-    final dustIcon = aqi;
     if (aqi == 1) {
       return 'good';
     } else if (aqi == 2) {
@@ -39,6 +42,5 @@ class CurrentAirDataModel {
     if (dustIcon == null) {
       Get.snackbar('error message', '아이콘을 불러올 수 없습니다.');
     }
-    return null;
   }
 }
