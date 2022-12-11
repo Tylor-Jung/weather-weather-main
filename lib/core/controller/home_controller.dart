@@ -43,7 +43,7 @@ extension HomeControllerFunction on HomeController {
     try {
       final body =
           await weatherApiRequestService.fetchAirData(latitude, longitude);
-      print('fetchAirData: ${body}');
+      print('fetchAirData: $body');
       if (body == null) {
         Get.snackbar('api invalid reponse error', '...');
         return;
