@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:weather_weather_clone/core/controller/home_controller.dart';
-import 'package:weather_weather_clone/views/components/tab_bar/widget/hourly_temp_widget.dart';
 
-class HomePage extends GetView<HomeController> {
+class HomeScreen extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,11 +61,14 @@ class HomePage extends GetView<HomeController> {
                                   color: Colors.white, fontSize: 20),
                             ), // 실시간 날씨
 
-                            // Image.asset(
-                            //   height: 100,
-                            //   width: 100,
-                            //   'assets/weather/${controller.currentData.value?.id}.png',
-                            // ),
+                            // ! 날씨상황을 나타내는 아이콘 => null 로 리턴됨 ㅡㅡ
+
+                            Image.asset(
+                              height: 100,
+                              width: 100,
+                              'assets/weather/10d.png',
+                              // 'assets/weather/${currentCntl.currentData?.icon}.png',
+                            ),
 
                             Text(
                               '${controller.currentData.value?.temp}℃',
@@ -88,82 +90,74 @@ class HomePage extends GetView<HomeController> {
                         ),
                       ));
                 }),
-                Obx(
-                  () => Padding(
-                    padding: const EdgeInsets.only(right: 15, bottom: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      // 미세먼지 지수 // 우측정렬
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            color: Colors.blue[300],
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              children: [
-                                controller.airModel.value == null
-                                    ? Container()
-                                    : Image.asset(
-                                        controller.airModel.value!
-                                            .getIconPath(),
-                                        width: 38,
-                                        height: 38,
-                                      ),
-                                const SizedBox(
-                                    width: 10), // 미세먼지에 따른 이미지 파일 집어넣기
-                                Text(
-                                  '${controller.airModel.value?.dust}',
-                                  style: const TextStyle(
-                                      color: Colors.white, fontSize: 25),
-                                ),
-                                const Text(
-                                  ' ㎍/㎥',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 10),
-                                ),
-                                const SizedBox(width: 10),
-                                Column(
-                                  children: const [
-                                    Text(
-                                      '미세미세',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                    SizedBox(height: 4), // 미세미세 타이틀
-                                    Text(
-                                      '매우나쁨',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                    ), // 미세먼지 데이터 특정 값 range 안에서 특정 메시지 출력
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  child: HourlyTempWidget(
-                    temp: '1111',
-                    time: '1111',
-                    weatherImage: '1111',
-                  ),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.only(right: 15, bottom: 10),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.end,
+                //     // 미세먼지 지수 // 우측정렬
+                //     children: [
+                //       Container(
+                //         decoration: BoxDecoration(
+                //           color: Colors.blue[300],
+                //           borderRadius: BorderRadius.circular(8),
+                //         ),
+                //         child: Padding(
+                //           padding: const EdgeInsets.all(8.0),
+                //           child: Row(
+                //             children: [
+                //               SizedBox(
+                //                 child: Image.asset(
+                //                   'assets/dust/good.png',
+                //                   // 'assets/dust/${airCntl.airModel?.dustIcon}.png',
+                //                   width: 38,
+                //                   height: 38,
+                //                 ),
+                //               ),
+                //               const SizedBox(
+                //                   width: 10), // 미세먼지에 따른 이미지 파일 집어넣기
+                //               Text(
+                //                 '${airCntl.airModel?.dust}',
+                //                 style: const TextStyle(
+                //                     color: Colors.white, fontSize: 25),
+                //               ),
+                //               const Text(
+                //                 ' ㎍/㎥',
+                //                 style: TextStyle(
+                //                     color: Colors.white, fontSize: 10),
+                //               ),
+                //               const SizedBox(width: 10),
+                //               Column(
+                //                 children: const [
+                //                   Text(
+                //                     '미세미세',
+                //                     style: TextStyle(
+                //                       color: Colors.white,
+                //                     ),
+                //                   ),
+                //                   SizedBox(height: 4), // 미세미세 타이틀
+                //                   Text(
+                //                     '매우나쁨',
+                //                     style: TextStyle(
+                //                       color: Colors.white,
+                //                     ),
+                //                   ), // 미세먼지 데이터 특정 값 range 안에서 특정 메시지 출력
+                //                 ],
+                //               ),
+                //             ],
+                //           ),
+                //         ),
+                //       )
+                //     ],
+                //   ),
+                // ),
                 // Container(
                 //   color: Colors.blue[600],
                 //   width: MediaQuery.of(context).size.width,
                 //   child: Column(
                 //     children: [
                 //       Row(
-                //         mainAxisAlignment: MainAxisAlignment.spaceAround,
+                //         mainAxisAlignment:
+                //             MainAxisAlignment.spaceAround,
                 //         // ignore: prefer_const_literals_to_create_immutables
                 //         children: [
                 //           const SizedBox(width: 10),

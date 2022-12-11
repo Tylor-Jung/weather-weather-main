@@ -2,14 +2,12 @@ import 'package:get/get.dart';
 
 class CurrentAirDataModel {
   // 대기질 리스트
-  double? dust;
-  int? aqi;
-  String? dustIcon;
+  double dust;
+  int aqi;
 
   CurrentAirDataModel({
-    this.dust,
-    this.aqi,
-    this.dustIcon,
+    required this.dust,
+    required this.aqi,
   });
 
   // * PM10 = 미세먼지
@@ -27,20 +25,20 @@ class CurrentAirDataModel {
     }
   }
 
-  getAirIcon(int aqi) {
-    if (aqi == 1) {
-      return 'good';
-    } else if (aqi == 2) {
-      return 'fair';
-    } else if (aqi == 3) {
-      return 'moderate';
-    } else if (aqi == 4) {
-      return 'poor';
-    } else if (aqi == 5) {
-      return 'bad';
-    }
-    if (dustIcon == null) {
-      Get.snackbar('error message', '아이콘을 불러올 수 없습니다.');
+  String getIconPath() {
+    switch (aqi) {
+      case 1:
+        return "assets/dust/good.png";
+      case 2:
+        return "assets/dust/fair.png";
+      case 3:
+        return "assets/dust/moderate.png";
+      case 4:
+        return "assets/dust/poor.png";
+      case 5:
+        return "assets/dust/bad.png";
+      default:
+        throw Exception();
     }
   }
 }

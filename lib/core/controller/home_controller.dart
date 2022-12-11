@@ -11,7 +11,7 @@ class HomeController extends GetxController {
   var isLoading = false.obs;
 
   Rxn<CurrentWeatherModel> currentData = Rxn();
-  Rxn<CurrentAirDataModel> airModel = Rxn();
+  Rxn<CurrentAirDataModel> airModel = Rxn(); // 초기에는 null
   Rxn<HourlyWeatherModel> hourlyModel = Rxn();
 
   @override

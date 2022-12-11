@@ -2,7 +2,6 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-
 class WeatherApiRequestService extends GetxService {
   // 생성자를 통해 URL을 입력 받도록 함.
   // ! 위도 경도를 받아서 URL 생성해서 받는게 좋음
@@ -54,17 +53,23 @@ class WeatherApiRequestService extends GetxService {
 
   Future<Map<String, dynamic>?> fetchHourlyWeatherData(
       double latitude, double longitude) async {
-    final endPoint =
-        'forecast/hourly?lat=$latitude&lon=$longitude&appid=$_apiKey&units=metric';
+    try {
+      final endPoint =
+          'forecast/hourly?lat=$latitude&lon=$longitude&appid=$_apiKey&units=metric';
 
-    final uri = Uri.parse(_hourlyUrl + endPoint);
-    final response = await http.get(uri);
+      final uri = Uri.parse(_hourlyUrl + endPoint);
 
-    if (response.statusCode != 200) {
+      final response = await http.get(uri);
+
+      if (response.statusCode != 200) {
+        return null;
+      }
+      var hourlyJson = jsonDecode(response.body);
+      return hourlyJson;
+    } catch (error) {
+      print(error);
       return null;
     }
-    var hourlyJson = jsonDecode(response.body);
-    return hourlyJson;
   }
 
   // Future<Map<String, dynamic>?> historyData(
